@@ -19,18 +19,23 @@ export interface PropsMyLabel{
     */
     allCaps?:boolean
     /**
-    * customFontColor: You can pass any color to change the label background color
+    * customFontColor: You can pass any color to change the label color
     */
     customFontColor?: string
+    /**
+    * customFontColor: You can pass any color to change the label background color
+    */
+    backgroundColor?: string
 }
 
-export const MyLabel = ({label="Custom Label", size = "normal", color = "primary", allCaps = false, customFontColor}: PropsMyLabel) => {
+export const MyLabel = ({label="Custom Label", size = "normal", color = "primary", allCaps = false, customFontColor, backgroundColor}: PropsMyLabel) => {
   
   return (
     <span 
-      className={`${size} ${color && "text-"+color} ${allCaps && "CAP"}`}
+      className={`${size} ${color && "text-"+color} ${allCaps ? "CAP": ""}`}
       style={{
-        color:customFontColor
+        color:customFontColor,
+        backgroundColor
       }}
       >
         {label}

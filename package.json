@@ -1,7 +1,26 @@
 {
-  "name": "my-storybook-components",
+  "name": "rp-my-storybook-components",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "license": "MIT",
+  "typings": "dist/index.d.ts",
+  "main": "dist.index.js",
+  "repository": {
+    "url": "https://github.com/esteban2841/storybook-components-typescript",
+    "type": "git"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "release": {
+    "branches": [
+      "main"
+    ]
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -16,10 +35,13 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start":"start-storybook -p 6006",
-    "build": "build-storybook",
+    "start": "start-storybook -p 6006",
+    "build": "yarn clean && tsc && yarn copy-files",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "chromatic": "npx chromatic --project-token=7fa410dc0164",
+    "clean": "rimraf dist/",
+    "copy-files": "copyfiles -u 1 src/**/*.css dist/ && copyfiles -u 1 src/components/styles/**/*.css dist/"
   },
   "eslintConfig": {
     "extends": [
@@ -49,6 +71,20 @@
     "@storybook/manager-webpack4": "^6.5.13",
     "@storybook/react": "^6.5.13",
     "@storybook/testing-library": "^0.0.13",
-    "babel-loader": "^8.3.0"
-  }
+    "babel-loader": "^8.3.0",
+    "chromatic": "^6.11.4",
+    "copyfiles": "^2.4.1",
+    "rimraf": "^3.0.2",
+    "semantic-release": "^19.0.5"
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "my-storybook-components@0.1.0",
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/release-notes-generator",
+    "@semantic-release/changelog",
+    "@semantic-release/github",
+    "@semantic-release/npm",
+    "@semantic-release/git"
+],
 }
